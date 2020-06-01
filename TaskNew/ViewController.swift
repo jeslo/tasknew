@@ -93,9 +93,12 @@ extension ViewController: UISearchBarDelegate{
 //        let resultPredicate = NSPredicate(format: "description Contains(%@)", searchText).sorted(by: {$0.date > $1.date})
 //        filterdata = testTransPerData.filter { resultPredicate.evaluate(with: $0) }
 //        print(filterdata)
-        
+       
         filterdata  = testTransPerData.filter({ descri -> Bool in
-            return descri.description.localizedCaseInsensitiveContains(searchText) 
+            return descri.description.localizedCaseInsensitiveContains(searchText) ||
+            descri.billingAmount.localizedCaseInsensitiveContains(searchText) ||
+            descri.time.localizedCaseInsensitiveContains(searchText) ||
+            descri.date.localizedCaseInsensitiveContains(searchText)
         })
     }
     
